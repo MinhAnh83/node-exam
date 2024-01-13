@@ -5,5 +5,8 @@ class NewsController {
   show(req, res) {
     res.send('detail');
   }
+  search(req, res) {
+    res.render('search');
+  }
 }
 module.exports = new NewsController();
