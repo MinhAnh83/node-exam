@@ -1,15 +1,14 @@
 const Course = require('../models/Course');
-
+const {mutipleMongosetoObject} =require('../../util/mongoose'); //chuyển thành object thông thường
 class SiteController {
   //[GET]
   async index(req, res) {
-    const instance = await Course.find({});
-    if (instance) {
-      await res.json(instance);
-    }
-    else{
-      res.status(400).json({error:'message error'})
-    }
+    let courses =  await Course.find({}); 
+     (courses) ? res.render('home', { title: 'HOME PAGE', courses: mutipleMongosetoObject(courses) }) :  res.status(400).json({ error: 'No courses found' });
+  
+  
+     
+  
   }
 
   search(req, res) {
